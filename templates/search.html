@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>ALL QUESTIONS</title>
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+          /*   background-color:blue; */
+          }
+          .card {
+            overflow:hidden;
+          }
+          h4 {
+          font-size: 26px;
+          margin-bottom: 0;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          color: #333;
+          }
+          
+          .card-text {
+            color: #333;
+          }
+          
+          .pricing ul {
+            list-style-type: none;
+          }
+          .pricing ul li:before {
+           font-family: 'FontAwesome';
+          content: '\f00c';
+          margin:0 5px 0 -15px;
+          color: #f00;
+          
+          }
+          
+          .pricing {
+          /*   border: 1px solid gray; */
+            box-shadow: 0 4px 12px rgba(0,0,0,.05), 0 2px 6px rgba(0,0,0,.15);
+          }
+          
+          @media (max-width:756px) {
+            .col-md-4 {
+              height:300px;
+              overflow:hidden;
+              padding-left:1rem;
+              padding-right:1rem;
+            }
+          }
+
+
+    </style>
+</head>
+<body>
+<h1 class = 'text-center'>YOU'VE SEARCHED FOR : {{query}}</h1>
+<br><br>
+{% if datas|length < 1 %}
+<h2 class = 'text-center'>OOPS , NOTHING TO SHOWUP</h2>
+{% endif %}
+{% for q in datas  %}
+    <section class="my-5" id="pricing">
+      <div class="container pricing">
+        <h4 class="py-3">{{q.title}}</h4>
+        <ul class="pb-3">
+          <li>ANSWERED : &nbsp {{q.answered}}</li>
+          <li> ANSWER COUNT : &nbsp{{q.count}} </li>
+          <li> VIEW COUNT : &nbsp{{q.view_count}} </li>
+        </ul>
+        <a href={{q.link}}><button class="btn btn-danger mb-3">Answer Here</button></a>
+        <a href={{q.asked_by}}><button class="btn btn-danger mb-3">ASKED BY</button></a>
+      </div>
+    </section>
+  </section><br>
+  {% endfor %}
